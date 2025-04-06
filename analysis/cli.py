@@ -4,7 +4,10 @@ from analysis.analysis import analyze_file, analyze_directory
 from analysis.utils import export_results
 
 def main():
-   parser = argparse.ArgumentParser(description='Analyze the percentage of columns filled in Excel or CSV files.')
+   parser = argparse.ArgumentParser(
+      description='Analyze the percentage of columns filled in Excel or CSV files.',
+      add_help=True
+   )
    parser.add_argument('--file', type=str, help='Path to the file to be analyzed.')
    parser.add_argument('--directory', type=str, help='Path to the directory containing the files to be analyzed.')
    parser.add_argument('--output', type=str, default='results', help='Directory where the results will be stored')
@@ -39,6 +42,7 @@ def main():
       export_results(results, args.output)
    else:
       print("You must specify --file or --directory to indicate what to scan.")
+      parser.print_help()
 
 if __name__ == "__main__":
    main()
