@@ -10,18 +10,18 @@ setup (
         "pandas>=1.3.0",
         "numpy>=1.20.0",
         "openpyxl>=3.0.7",
-        "xlrd>=2.0.1"
+        "xlrd>=2.0.1",
         "argparse>=1.4.0",
     ],
     entry_points={
         "console_scripts": [
-            "commando=analysis.cli:main",
+            "analyze=analysis.cli:main",
         ],
     },
     # Metadatos
     author="Alejandro Lopez Monzon",
     author_email="alejandro@kreaker.dev",
-    description="File Analysis for DataFill on SKU tables",
+    description="Data filling from generated files (databases dumps)",
     keywords="analysis datafill data skus",
     url="https://github.com/alexlm78/FileAnalysis",
     classifiers=[
