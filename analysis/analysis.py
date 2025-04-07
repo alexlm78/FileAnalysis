@@ -1,6 +1,6 @@
 import os
 import pandas
-from typing import Dict, List, Set, Union, Optional
+from typing import Dict, Set
 
 def analyze_file(file_path: str, valid_values: Dict[str, Set] = None) -> pandas.DataFrame:
    """
