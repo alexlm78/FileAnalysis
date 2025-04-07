@@ -61,12 +61,10 @@ format: ## format code with black and ruff
 	black analysis tests
 
 test: ## run tests
-	pytest
+	pytest --verbose
 
 coverage: ## check code coverage
-	coverage run --source analysis -m pytest
-	coverage report -m
-	coverage html
+	pytest --cov=analysis --cov-report=term --cov-report=html
 	$(BROWSER) htmlcov/index.html
 
 docs: ## generate Sphinx documentation
@@ -101,3 +99,15 @@ run-file: ## run analysis on a specific file (use FILE=path/to/file OUTPUT=path/
 
 run-dir: ## run analysis on a directory (use DIR=path/to/directory OUTPUT=path/to/results)
 	analyze --directory $(DIR) --output $(OUTPUT)
+
+test-unit: ## run only unit tests
+	pytest -v -m unit
+
+test-integration: ## run only integration tests
+	pytest -v -m integration
+
+test-quick: ## run tests without slow ones
+	pytest -v -k "not slow"
+
+test-file: ## run tests in a specific file (use FILE=path/to/test_file.py)
+	pytest -v $(FILE)

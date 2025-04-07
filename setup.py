@@ -13,6 +13,22 @@ setup (
         "xlrd>=2.0.1",
         "argparse>=1.4.0",
     ],
+    extras_require={
+        "dev": [
+            "pytest>=7.0.0",
+            "pytest-cov>=4.0.0",
+            "pytest-mock>=3.10.0",
+            "pytest-xdist>=3.3.0",
+            "black>=23.0.0",
+            "ruff>=0.1.0",
+            "coverage>=7.0.0",
+            "twine>=4.0.0",
+            "sphinx>=7.0.0",
+            "sphinx_rtd_theme>=1.0.0",
+            "build>=0.10.0",
+            "wheel>=0.40.0",
+        ],
+    },
     entry_points={
         "console_scripts": [
             "analyze=analysis.cli:main",
