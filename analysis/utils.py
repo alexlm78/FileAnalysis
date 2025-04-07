@@ -1,8 +1,8 @@
 import os
-import pandas as pd
+import pandas
 from typing import Dict
 
-def export_results(results: Dict[str, pd.DataFrame], output_dir: str) -> None:
+def export_results(results: Dict[str, pandas.DataFrame], output_dir: str) -> None:
    """
    Exports the results to Excel files.
    
@@ -22,10 +22,10 @@ def export_results(results: Dict[str, pd.DataFrame], output_dir: str) -> None:
       print(f"Resultados guardados en: {output_path}")
    
    # Create an Excel file with all results combined
-   all_results = pd.DataFrame()
+   all_results = pandas.DataFrame()
    for filename, result_df in results.items():
       result_df['File'] = filename
-      all_results = pd.concat([all_results, result_df])
+      all_results = pandas.concat([all_results, result_df])
    
    all_results_path = os.path.join(output_dir, "complete_analysis.xlsx")
    all_results.to_excel(all_results_path, index=False)

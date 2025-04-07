@@ -1,8 +1,8 @@
 import os
-import pandas as pd
+import pandas
 from typing import Dict, List, Set, Union, Optional
 
-def analyze_file(file_path: str, valid_values: Dict[str, Set] = None) -> pd.DataFrame:
+def analyze_file(file_path: str, valid_values: Dict[str, Set] = None) -> pandas.DataFrame:
    """
    Parses an Excel or CSV file and calculates the fill percentage of each column.
    
@@ -19,9 +19,9 @@ def analyze_file(file_path: str, valid_values: Dict[str, Set] = None) -> pd.Data
    
    # Load the file according to its extension
    if file_extension == '.csv':
-      df = pd.read_csv(file_path, low_memory=False)
+      df = pandas.read_csv(file_path, low_memory=False)
    elif file_extension in ['.xlsx', '.xls']:
-      df = pd.read_excel(file_path)
+      df = pandas.read_excel(file_path)
    else:
       raise ValueError(f"File type not supported: {file_extension}")
    
@@ -66,10 +66,10 @@ def analyze_file(file_path: str, valid_values: Dict[str, Set] = None) -> pd.Data
       results['Percentage_Filled'].append(round(fill_percentage, 2))
    
    # Create DataFrame with the results
-   results_df = pd.DataFrame(results)
+   results_df = pandas.DataFrame(results)
    return results_df
 
-def analyze_directory(directory_path: str, valid_values: Dict[str, Set] = None) -> Dict[str, pd.DataFrame]:
+def analyze_directory(directory_path: str, valid_values: Dict[str, Set] = None) -> Dict[str, pandas.DataFrame]:
    """
    Analyzes all Excel and CSV files in a directory.
    

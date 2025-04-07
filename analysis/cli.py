@@ -25,7 +25,7 @@ def main():
    if args.file:
       # Analyze a single file
       result = analyze_file(args.file, valid_values)
-      print("\nResultados:")
+      print("\nResults:")
       print(result)
       
       # Export results
