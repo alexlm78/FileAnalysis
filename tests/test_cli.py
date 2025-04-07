@@ -1,6 +1,3 @@
-import os
-import pytest
-import sys
 import pandas
 from unittest.mock import patch
 from analysis.cli import main

@@ -1,5 +1,4 @@
 import os
-import pytest
 import pandas
 from analysis.utils import export_results
 
