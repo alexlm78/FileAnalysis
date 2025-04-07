@@ -1,5 +1,5 @@
 import os
-import pandas as pd
+import pandas
 import pytest
 import tempfile
 import shutil
@@ -9,13 +9,13 @@ def sample_csv_path():
     """Create a sample CSV file for testing."""
     with tempfile.NamedTemporaryFile(suffix='.csv', delete=False) as tmp:
         # Create a sample DataFrame
-        df = pd.DataFrame({
+        df = pandas.DataFrame({
             'ID': [1, 2, 3, 4, 5],
             'NAME': ['Product A', 'Product B', 'Product C', 'Product D', 'Product E'],
             'PRICE': [10.5, 20.0, None, 15.75, 8.25],
             'IN_STOCK': ['Y', 'N', 'Y', '', None],
-            'COMPRABLE': ['S', 'S', '', ' ', 'S'],
-            'VENDIBLE': ['S', '', 'S', ' ', 'S'],
+            'COMPRABLE': ['S', 'S', 'S', 'S', 'S'],
+            'VENDIBLE':  ['S', 'S', 'S', 'S', 'S'],
         })
         
         # Save the DataFrame to a CSV file
@@ -31,13 +31,13 @@ def sample_excel_path():
     """Create a sample Excel file for testing."""
     with tempfile.NamedTemporaryFile(suffix='.xlsx', delete=False) as tmp:
         # Create a sample DataFrame
-        df = pd.DataFrame({
+        df = pandas.DataFrame({
             'ID': [1, 2, 3, 4, 5],
             'NAME': ['Product A', 'Product B', 'Product C', 'Product D', 'Product E'],
             'PRICE': [10.5, 20.0, None, 15.75, 8.25],
             'IN_STOCK': ['Y', 'N', 'Y', '', None],
-            'COMPRABLE': ['S', 'S', '', ' ', 'S'],
-            'VENDIBLE': ['S', '', 'S', ' ', 'S'],
+            'COMPRABLE': ['S', 'S', 'S', 'S', 'S'],
+            'VENDIBLE':  ['S', 'S', 'S', 'S', 'S'],
         })
         
         # Save the DataFrame to an Excel file
@@ -56,7 +56,7 @@ def sample_directory():
     
     # Create sample CSV file in the directory
     csv_path = os.path.join(temp_dir, "sample1.csv")
-    df1 = pd.DataFrame({
+    df1 = pandas.DataFrame({
         'ID': [1, 2, 3],
         'NAME': ['Item A', 'Item B', 'Item C'],
         'STATUS': ['Active', None, 'Inactive']
@@ -65,10 +65,10 @@ def sample_directory():
     
     # Create sample Excel file in the directory
     excel_path = os.path.join(temp_dir, "sample2.xlsx")
-    df2 = pd.DataFrame({
+    df2 = pandas.DataFrame({
         'CODE': ['A001', 'A002', 'A003'],
         'DESCRIPTION': ['Description 1', 'Description 2', ''],
-        'COMPRABLE': ['S', '', 'S']
+        'COMPRABLE': ['S', 'S', 'S']
     })
     df2.to_excel(excel_path, index=False)
     

@@ -1,6 +1,7 @@
 import os
 import pytest
-import pandas as pd
+import pandas
+import tempfile
 from analysis.analysis import analyze_file, analyze_directory
 
 class TestAnalyzeFile:
@@ -11,19 +12,19 @@ class TestAnalyzeFile:
         result = analyze_file(sample_csv_path)
         
         # Check that the result is a DataFrame
-        assert isinstance(result, pd.DataFrame)
+        assert isinstance(result, pandas.DataFrame)
         
         # Check that the result has the expected columns
         expected_columns = ['Column', 'Total_Rows', 'Full_Values', 'Empty_Values', 'Percentage_Filled']
         assert all(col in result.columns for col in expected_columns)
         
         # Check that all columns from the input file are analyzed
-        input_columns = pd.read_csv(sample_csv_path).columns
+        input_columns = pandas.read_csv(sample_csv_path).columns
         analyzed_columns = result['Column'].tolist()
         assert all(col in analyzed_columns for col in input_columns)
         
         # Check that the total rows count is correct
-        expected_rows = len(pd.read_csv(sample_csv_path))
+        expected_rows = len(pandas.read_csv(sample_csv_path))
         assert all(result['Total_Rows'] == expected_rows)
     
     def test_analyze_excel(self, sample_excel_path):
@@ -31,19 +32,19 @@ class TestAnalyzeFile:
         result = analyze_file(sample_excel_path)
         
         # Check that the result is a DataFrame
-        assert isinstance(result, pd.DataFrame)
+        assert isinstance(result, pandas.DataFrame)
         
         # Check that the result has the expected columns
         expected_columns = ['Column', 'Total_Rows', 'Full_Values', 'Empty_Values', 'Percentage_Filled']
         assert all(col in result.columns for col in expected_columns)
         
         # Check that all columns from the input file are analyzed
-        input_columns = pd.read_excel(sample_excel_path).columns
+        input_columns = pandas.read_excel(sample_excel_path).columns
         analyzed_columns = result['Column'].tolist()
         assert all(col in analyzed_columns for col in input_columns)
         
         # Check that the total rows count is correct
-        expected_rows = len(pd.read_excel(sample_excel_path))
+        expected_rows = len(pandas.read_excel(sample_excel_path))
         assert all(result['Total_Rows'] == expected_rows)
     
     def test_analyze_with_valid_values(self, sample_csv_path):
@@ -57,7 +58,7 @@ class TestAnalyzeFile:
         result = analyze_file(sample_csv_path, valid_values)
         
         # Check that the result is a DataFrame
-        assert isinstance(result, pd.DataFrame)
+        assert isinstance(result, pandas.DataFrame)
         
         # Find the rows for COMPRABLE and VENDIBLE columns
         comprable_row = result[result['Column'] == 'COMPRABLE']
@@ -67,7 +68,7 @@ class TestAnalyzeFile:
         assert comprable_row['Full_Values'].iloc[0] == 5  # All values are valid
         
         # Manually calculate expected counts for validation
-        df = pd.read_csv(sample_csv_path)
+        df = pandas.read_csv(sample_csv_path)
         expected_vendible_valid = sum(df['VENDIBLE'].isin(['S', ' ', '']))
         assert vendible_row['Full_Values'].iloc[0] == expected_vendible_valid
     
@@ -93,7 +94,7 @@ class TestAnalyzeDirectory:
         
         # Check that each result is a DataFrame with the expected structure
         for filename, result in results.items():
-            assert isinstance(result, pd.DataFrame)
+            assert isinstance(result, pandas.DataFrame)
             expected_columns = ['Column', 'Total_Rows', 'Full_Values', 'Empty_Values', 'Percentage_Filled']
             assert all(col in result.columns for col in expected_columns)
     
