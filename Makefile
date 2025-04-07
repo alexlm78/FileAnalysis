@@ -91,7 +91,7 @@ release: dist ## package and upload a release to PyPI
 	twine upload dist/*
 
 venv: ## create a virtual environment using uv
-	uv env
+	uv venv
 	@echo "Run 'source .venv/bin/activate' to activate the virtual environment"
 
 run-file: ## run analysis on a specific file (use FILE=path/to/file OUTPUT=path/to/results)
