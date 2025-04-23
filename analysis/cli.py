@@ -27,8 +27,8 @@ def main():
     # Define valid values for specific columns (customize according to your needs)
     # Example: for the column 'COMPRABLE', 'Y', ' ' and '' are considered as valid values
     valid_values = {
-        "COMPRABLE": {"S", " ", ""},
-        "VENDIBLE": {"S", " ", ""},
+        "COMPRABLE": {"S", "N", " ", ""},
+        "VENDIBLE": {"S", "N", " ", ""},
         # Add more columns as needed
     }
 
